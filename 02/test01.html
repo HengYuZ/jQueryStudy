@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>编写简单的Jquery代码</title>
+	<!-- 引入jQuery-->
+	<script type="text/javascript" src="../scripts/jquery-1.7.2.js"></script>
+	<!--
+	<script type="text/javascript">
+		function demo(){
+			alert("javascript demo!");
+		}
+	</script>
+	<script type="text/javascript">
+		$(".demo").click(function(){
+			alert("jqury demo!");
+		});
+	</script>
+	-->
+
+	<script type="text/javascript">
+		$(function(){		//等待DOM加载完毕
+			var $category = $('ul li:gt(5):not(:last)');     //获得索引值大于5的品牌集合对象(除了最后一条，从0开始)
+			$category.hide();	//隐藏jQuery对象
+			var $toggleBtn = $('div.showmore > a');	//获取显示所有品牌的按钮
+			$toggleBtn.click(function(){	//为其添加onclick事件
+				if($category.is(":visible")){	//如果元素可见
+					$category.hide();	//隐藏对象
+					$(this).find("span")
+					.css("background","url(img/down.gif)no-repeat 0 0")
+					.text("显示全部品牌");
+					$('ul li').removeClass("promoted");
+				}else{	//如果元素不可见
+					$category.show();	
+					$(this).find('span')
+					.css("background","url(img/up.gif) no-repeat 0 0")
+					.text("精简显示品牌");
+					$('ul li').filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')")
+					.addClass("promoted");
+				}
+				return false;	//设置连接不能跳转
+			});	
+		});
+	</script>
+</head>
+<body>
+	<!--
+		<p onclick="demo()">点击数</p>
+	-->
+	<p id="demo">点击数</p>
+	<script type="text/javascript">
+		$("#demo").click(function(){
+			alert("jqury demo!");
+		});
+	</script>
+
+	<div class="SubCategoryBox">
+		<ul>
+			<li><a href="#">佳能</a></li>
+			<li><a href="#">索尼</a></li>
+			<li><a href="#">三星</a></li>
+			<li><a href="#">尼康</a></li>
+			<li><a href="#">松下</a></li>
+			<li><a href="#">卡西欧</a></li>
+			<li><a href="#">富士</a></li>
+			<li><a href="#">柯达</a></li>
+			<li><a href="#">宾得</a></li>
+			<li><a href="#">奥林巴斯</a></li>
+			<li><a href="#">明基</a></li>
+			<li><a href="#">爱国者</a></li>
+			<li><a href="#">其他品牌</a></li>
+		</ul>
+		<div class="showmore">
+			<a href="more.html"><span>显示更多品牌</span></a>
+		</div>
+	</div>
+</body>
+</html>
