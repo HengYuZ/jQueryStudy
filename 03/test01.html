@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>选择你爱的水果</title>
+	<!-- 引入jQuery-->
+	<script type="text/javascript" src="../scripts/jquery-1.7.2.js"></script>
+</head>
+<body>
+	<div>
+		<p>你喜欢哪个水果？</p>
+		<ul>
+			<li>苹果</li>
+			<li>梨子</li>
+			<li>香蕉</li>
+			<li>葡萄</li>
+		</ul>
+		<p class="choose">选择梨子</a></p>
+		<script type="text/javascript">
+			$(".choose").click(function(){
+				var $li = $("ul li:eq(1)");
+				var fruit = $li.text();
+				alert(fruit);
+			});
+		</script>
+
+		<p title="hello" class="getContent">点击我获取我的值</p>
+		<script type="text/javascript">
+			$(".getContent").click(function(){
+				var $para = $(this);
+				var p_txt = $para.attr("title");
+				alert(p_txt);
+			});
+		</script>
+		
+		<p class="increaseUL">增加水果</p>
+		<script type="text/javascript">
+			$(".increaseUL").click(function(){
+				var $li_1 = $("<li>山楂</li>");
+				var $li_2 = $("<li>桃子</li>");
+				$("ul").append($li_1);
+				$("ul").append($li_2);
+			});
+		</script>
+
+		<p class="decreaseUL">减少水果</p>
+		<script type="text/javascript">
+			$(".decreaseUL").click(function(){
+				var length = $("li").length;
+				var two = length-2;
+				var html = "ul li:gt(two)";
+				var $li_1 = $(html);
+				$li_1.hide();
+			});
+		</script>
+	</div>
+</body>
+</html>
