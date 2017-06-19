@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery复选框练习</title>
+	<!-- 引入jQuery-->
+	<script type="text/javascript" src="../scripts/jquery-1.7.2.js"></script>
+</head>
+<body>
+	<div>
+		<p>选择要购买的水果</p>
+		<ul class="fruit">
+			<li><input type="checkbox" value="001"/>苹果</li>
+			<li><input type="checkbox" value="002"/>雪梨</li>
+			<li><input type="checkbox" value="003"/>芒果</li>
+			<li><input type="checkbox" value="004"/>菠萝</li>
+		</ul>
+		<input type="checkbox" id="All"/>
+		<button id="checkAll">全选</button>
+		<button id="nothing">全不选</button>
+		<button id="reverseAll">反选</button>
+		<button class="chooseFruit">购买</button>
+
+		<script type="text/javascript">
+
+			$("#All").click(function(){
+				if("this.checked"){
+					$(".fruit :checkbox").prop("checked", true);
+				}else{
+					$(".fruit :checkbox").prop("checked", false);
+				}
+			});
+
+			$("#checkAll").click(function(){
+				$(".fruit :checkbox").prop("checked", true);
+			});
+
+
+			$("#nothing").click(function(){
+				$(".fruit :checkbox").prop("checked", false);
+			});
+
+
+			$("#reverseAll").click(function(){
+				$(".fruit :checkbox").each(function(i){
+					$(this).prop("checked", !$(this).prop("checked"));
+				});
+			});
+
+			$(".chooseFruit").click(function(){
+				var arr = new Array;
+				$(".fruit :checkbox[checked]").each(function(i){
+					arr[i] = $(this).val();
+				});
+				var vals = arr.join(",");
+				console.log(vals);
+			});
+		</script>
+	</div>
+</body>
+</html>
