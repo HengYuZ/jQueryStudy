@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery为网站超链接和图片提示效果练习</title>
+	<!-- 引入jQuery-->
+	<script type="text/javascript" src="../scripts/jquery-1.7.2.js"></script>
+</head>
+<body>
+	<p><a href="#" class="tooltip" title="这是我的链接提示1">提示1</a></p>
+	<p><a href="#" class="tooltip" title="这是我的链接提示2">提示2</a></p>
+	<p><a href="#" title="这是自带提示1">自带提示1</a></p>
+	<p><a href="#" title="这是自带提示2">自带提示2</a></p>
+
+	<p>鼠标位置：<span></span></p>
+	<script type="text/javascript">
+		$(function(){
+			$("a.tooltip").mouseover(function(e){
+				this.myTitle = this.title;
+				this.title = "";
+				var fontSize = 15;
+				var x = 10;
+				var y = -160;
+				var width = 150;
+				var tooltip = "<div id='tooltip'>"+this.myTitle+"</div>";
+				$("body").append(tooltip);
+				$("#tooltip")
+					.css({
+						"margin-top":(e.pageY+y) + "px",
+						"margin-left":(e.pageX+x) + "px",
+						"background-color":"yellow",
+						"font-szie": fontSize+"px",
+						"width": width+"px"
+				}).show("fast");
+			}).mouseout(function(){
+				this.title = this.myTitle;
+				$("#tooltip").remove();
+			});
+		});
+
+		$(document).mouseover(function(e){
+			$("span").text("X:"+e.pageX+" Y:"+e.pageY);
+		});
+	</script>
+</body>
+</html>
