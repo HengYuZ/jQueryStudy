@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery图片预览效果练习</title>
+	<!-- 引入jQuery-->
+	<script type="text/javascript" src="../scripts/jquery-1.7.2.js"></script>
+</head>
+<body>
+	<div id="pingguo">
+		<div>
+			<ul style="list-style: none">
+				<li style="float: left;"><p><a href="../img/img01.png" class="tooltip" title="iphone5s 黄色版"><img src="../img/img01.png">iphone5s 黄色版</a></p>
+				<li style="float: left;"><p><a href="../img/img02.png" class="tooltip" title="iphone5s 红色版"><img src="../img/img02.png">iphone5s 红色版</a></p></li>
+				<li style="float: left;"><p><a href="../img/img03.png" class="tooltip" title="iphone5S 白色版"><img src="../img/img03.png">iphone5s 白色版</a></p></li>
+				<li style="float: left;"><p><a href="../img/img04.png" class="tooltip" title="IPAD"><img src="../img/img04.png">ipad</a></p></li></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			var x = 200;
+			var y = 100;
+			var divWidth = 400;
+			var divHeight = 600;
+			var width = 350;
+			var height = 400;	
+			var fontSize = 15;
+			$("a.tooltip").mouseover(function(e){
+				this.myTitle = this.title;
+				this.title = "";
+				var imgTitle = this.myTitle? "<br/>"+this.myTitle:"";
+				var tooltip = "<div id='tooltip'><img src='"+this.href+"'alt='产品预览图'/>"+imgTitle+"</div>";
+				$("#pingguo").append(tooltip);
+				$("#tooltip")
+					.css({
+						"padding-top": y+ "px",
+						"margin-left":x+ "px",
+						"background-color":"white",
+						"font-szie": fontSize+"px",
+						"width":divWidth,
+						"height":divHeight,
+				}).show("fast");
+				$("#tooltip img").css({
+					"width":width,
+					"height":height
+				});
+			}).mouseout(function(){
+				this.title = this.myTitle;
+				$("#tooltip").remove();
+			});
+		});
+	</script>
+</body>
+</html>
